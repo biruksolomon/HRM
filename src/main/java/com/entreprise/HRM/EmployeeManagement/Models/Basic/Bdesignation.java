@@ -14,7 +14,6 @@ public class Bdesignation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String title;
 
     @OneToMany(mappedBy = "bdesignation", cascade = CascadeType.ALL)
