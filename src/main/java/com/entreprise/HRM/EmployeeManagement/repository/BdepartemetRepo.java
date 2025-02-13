@@ -11,5 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface BdepartemetRepo extends JpaRepository<Bdepartements,Long> {
-    public Optional<List<Bdepartements>> findByName(String departement);
+    public Optional<List<Bdepartements>> findByName(String name);
 }
