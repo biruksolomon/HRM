@@ -25,42 +25,46 @@ public class controllertest {
     public ResponseEntity<Object> adds(@RequestBody List<Bemployees> bemployees){
         return new ResponseEntity<>(bemployeeServ.addEmployees(bemployees),HttpStatus.OK);
     }
-    @GetMapping("get/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Object> getbyid(@PathVariable long id){
         return new ResponseEntity<>(bemployeeServ.getEmployee(id),HttpStatus.OK);
     }
 
-    @GetMapping("get")
+    @GetMapping("/get")
     public ResponseEntity<Object> getAll(){
         return new ResponseEntity<>(bemployeeServ.getEmployees(),HttpStatus.OK);
     }
 
-    @GetMapping("get/name")
+    @GetMapping("/get/name")
     //using firstname as a key and use value for search
     public ResponseEntity<Object> getbyname(@RequestBody String name){
         return new ResponseEntity<>(bemployeeServ.getEmployeebyname(name),HttpStatus.OK);
     }
 
-    @GetMapping("get/phone")
+    @GetMapping("/get/phone")
     //using phoneNo as a  key and it searching without finished the value
     public ResponseEntity<Object> getbyphoneno(@RequestBody String phone){
         return new ResponseEntity<>(bemployeeServ.getEmployeebyphoneno(phone),HttpStatus.OK);
     }
-    @GetMapping("get/email")
+    @GetMapping("/get/email")
     public ResponseEntity<Object> getbyemail(@RequestBody String email){
         return new ResponseEntity<>(bemployeeServ.getEmployeebyemail(email),HttpStatus.OK);
     }
-    @GetMapping("get/gender")
+    @GetMapping("/get/gender")
     public ResponseEntity<Object> getbygender(@RequestBody String gender){
         return new ResponseEntity<>(bemployeeServ.getEmployeebygender(gender),HttpStatus.OK);
     }
-    @GetMapping("get/status")
+    @GetMapping("/get/status")
     public ResponseEntity<Object> getbystatus(@RequestBody String status){
         return new ResponseEntity<>(bemployeeServ.getEmployeebystatus(status),HttpStatus.OK);
     }
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Object> deletebyid(@PathVariable long id){
-        bemployeeServ.deletebyid(id);
-        return new ResponseEntity<>("Deleted Sussussfully" ,HttpStatus.OK);
+    @DeleteMapping("/delete/{id}")
+   public ResponseEntity<Object> delete(@PathVariable long id){
+        return new ResponseEntity<>(bemployeeServ.deleteEmployee(id),HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> update(@RequestBody Bemployees bemployees,@PathVariable long id){
+        return new ResponseEntity<>(bemployeeServ.updateEmployee(bemployees,id),HttpStatus.OK);
     }
 }

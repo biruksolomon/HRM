@@ -46,10 +46,27 @@ public class BemployeeServ {
        return bemployeeRepo.findByGender(gender);
     }
 // Need more Maintanance
-    public void deletebyid(long id) {
-        if (!bemployeeRepo.existsById(id)){
-            bemployeeRepo.deleteById(id);
+   public boolean deleteEmployee(long id){
+       if(bemployeeRepo.existsById(id)) {
+           bemployeeRepo.deleteById(id);
+           return true;
+       }
+       else return false;
+   }
+
+   public Bemployees updateEmployee(Bemployees bemployees , long id){
+        if(bemployeeRepo.findById(id).isPresent()){
+            Bemployees emp = new Bemployees();
+            emp.setId(id);
+            emp.setFirstName(bemployees.getFirstName());
+            emp.setLastName(bemployees.getLastName());
+            emp.setPhoneNo(bemployees.getPhoneNo());
+            emp.setEmail(bemployees.getEmail());
+            emp.setGender(bemployees.getGender());
+            emp.setStatus(bemployees.getStatus());
+            return bemployeeRepo.save(emp);
         }
-    }
+        else return null;
+   }
 
 }
