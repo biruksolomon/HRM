@@ -1,5 +1,9 @@
 package com.entreprise.HRM.EmployeeManagement.Models.Basic;
 
+import com.entreprise.HRM.EmployeeManagement.Models.payroll.employee_benefit;
+import com.entreprise.HRM.EmployeeManagement.Models.payroll.payroll;
+import com.entreprise.HRM.EmployeeManagement.Models.payroll.retirement;
+import com.entreprise.HRM.EmployeeManagement.Models.payroll.salary_structure;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -42,4 +46,24 @@ public class Bemployees {
 
     @OneToMany(mappedBy = "bemployees", cascade = CascadeType.ALL)
     private List<Bwork_history> bworkHistories;
+
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "salary_id",referencedColumnName = "id")
+//    private salary_structure salaryStructure;
+    @OneToOne(cascade = CascadeType.ALL)
+    private salary_structure salaryStructure;
+
+    @ManyToOne
+    @JoinColumn(name = "payroll_id",referencedColumnName = "id")
+    private payroll payroll;
+
+    @ManyToOne
+    @JoinColumn(name = "benefit_id", referencedColumnName = "id")
+    private employee_benefit benefit;
+
+    @ManyToOne
+    @JoinColumn(name = "retirement_id",referencedColumnName = "id")
+    private retirement retirement;
 }
