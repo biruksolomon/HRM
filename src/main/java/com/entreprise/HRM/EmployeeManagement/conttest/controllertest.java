@@ -3,6 +3,7 @@ package com.entreprise.HRM.EmployeeManagement.conttest;
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
 import com.entreprise.HRM.EmployeeManagement.repository.BemployeeRepo;
 import com.entreprise.HRM.EmployeeManagement.service.BemployeeServ;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +18,16 @@ public class controllertest {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Object> add(@RequestBody Bemployees bemployees){
+    public ResponseEntity<Object> add(@Valid @RequestBody Bemployees bemployees){
         return new ResponseEntity<>(bemployeeServ.addEmployee(bemployees), HttpStatus.OK);
     }
 
     @PostMapping("/adds")
-    public ResponseEntity<Object> adds(@RequestBody List<Bemployees> bemployees){
+    public ResponseEntity<Object> adds(@Valid @RequestBody List<Bemployees> bemployees){
         return new ResponseEntity<>(bemployeeServ.addEmployees(bemployees),HttpStatus.OK);
     }
     @GetMapping("/get/{id}")
-    public ResponseEntity<Object> getbyid(@PathVariable long id){
+    public ResponseEntity<Object> getbyid( @PathVariable long id){
         return new ResponseEntity<>(bemployeeServ.getEmployee(id),HttpStatus.OK);
     }
 
@@ -35,27 +36,27 @@ public class controllertest {
         return new ResponseEntity<>(bemployeeServ.getEmployees(),HttpStatus.OK);
     }
 
-    @GetMapping("/get/name")
+    @GetMapping("/getbyname")
     //using firstname as a key and use value for search
-    public ResponseEntity<Object> getbyname(@RequestBody String name){
-        return new ResponseEntity<>(bemployeeServ.getEmployeebyname(name),HttpStatus.OK);
+    public ResponseEntity<Object> getbyname(@RequestParam String firstname){
+        return new ResponseEntity<>(bemployeeServ.getEmployeebyname(firstname),HttpStatus.OK);
     }
 
-    @GetMapping("/get/phone")
+    @GetMapping("/getbyphone")
     //using phoneNo as a  key and it searching without finished the value
-    public ResponseEntity<Object> getbyphoneno(@RequestBody String phone){
+    public ResponseEntity<Object> getbyphoneno( @RequestParam String phone){
         return new ResponseEntity<>(bemployeeServ.getEmployeebyphoneno(phone),HttpStatus.OK);
     }
-    @GetMapping("/get/email")
-    public ResponseEntity<Object> getbyemail(@RequestBody String email){
+    @GetMapping("/getbyemail")
+    public ResponseEntity<Object> getbyemail( @RequestParam String email){
         return new ResponseEntity<>(bemployeeServ.getEmployeebyemail(email),HttpStatus.OK);
     }
-    @GetMapping("/get/gender")
-    public ResponseEntity<Object> getbygender(@RequestBody String gender){
+    @GetMapping("/getbygender")
+    public ResponseEntity<Object> getbygender(@RequestParam String gender){
         return new ResponseEntity<>(bemployeeServ.getEmployeebygender(gender),HttpStatus.OK);
     }
-    @GetMapping("/get/status")
-    public ResponseEntity<Object> getbystatus(@RequestBody String status){
+    @GetMapping("/getbystatus")
+    public ResponseEntity<Object> getbystatus(@RequestParam String status){
         return new ResponseEntity<>(bemployeeServ.getEmployeebystatus(status),HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
@@ -66,5 +67,9 @@ public class controllertest {
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestBody Bemployees bemployees,@PathVariable long id){
         return new ResponseEntity<>(bemployeeServ.updateEmployee(bemployees,id),HttpStatus.OK);
+    }
+    @PutMapping("/partial")
+    public ResponseEntity<Object> partialUpdate(@RequestParam String name, @Valid @RequestBody Bemployees bemployees){
+        return new ResponseEntity<>(bemployeeServ.partilaupadte(name,bemployees),HttpStatus.OK);
     }
 }

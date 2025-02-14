@@ -16,12 +16,4 @@ public interface BemployeeRepo extends JpaRepository<Bemployees,Long> {
     public Optional<List<Bemployees>> findByGender(String geneder);
     public Optional<Bemployees> findByEmail(String email);
     public Optional<List<Bemployees>> findByStatus(String status);
-
-    public Bemployees deletebyFirstname(String firstname);
-
-
-//    @Transactional
-//    @Modifying
-//    @Query("DELETE FORM Bemployee e WHERE e = :id")
-//    public void deletebyid(long id);
 }

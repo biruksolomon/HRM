@@ -17,45 +17,53 @@ public class BemployeeServ {
     private BemployeeRepo bemployeeRepo;
 
 
-    public Bemployees addEmployee(Bemployees bemployees){
+    public Bemployees addEmployee(Bemployees bemployees) {
         return bemployeeRepo.save(bemployees);
     }
 
-    public List<Bemployees> addEmployees(List<Bemployees> bemployees){
+    public List<Bemployees> addEmployees(List<Bemployees> bemployees) {
         return bemployeeRepo.saveAll(bemployees);
     }
-    public Optional<Bemployees> getEmployee(long id){
-       return  bemployeeRepo.findById(id);
+
+    public Optional<Bemployees> getEmployee(long id) {
+        return bemployeeRepo.findById(id);
     }
-    public List<Bemployees> getEmployees(){
+
+    public List<Bemployees> getEmployees() {
         return bemployeeRepo.findAll();
     }
-    public Optional<List<Bemployees>> getEmployeebyname(String firstname){
-       return bemployeeRepo.findByFirstName(firstname);
+
+    public Optional<List<Bemployees>> getEmployeebyname(String firstname) {
+        return bemployeeRepo.findByFirstName(firstname);
     }
-    public Optional<Bemployees> getEmployeebyphoneno(String phoneno){
-       return bemployeeRepo.findByPhoneNo(phoneno);
+
+    public Optional<Bemployees> getEmployeebyphoneno(String phoneno) {
+        return bemployeeRepo.findByPhoneNo(phoneno);
     }
-    public Optional<Bemployees> getEmployeebyemail(String email){
+
+    public Optional<Bemployees> getEmployeebyemail(String email) {
         return bemployeeRepo.findByEmail(email);
     }
-    public Optional<List<Bemployees>> getEmployeebystatus(String status){
+
+    public Optional<List<Bemployees>> getEmployeebystatus(String status) {
         return bemployeeRepo.findByStatus(status);
     }
-    public Optional<List<Bemployees>> getEmployeebygender(String gender){
-       return bemployeeRepo.findByGender(gender);
-    }
-// Need more Maintanance
-   public boolean deleteEmployee(long id){
-       if(bemployeeRepo.existsById(id)) {
-           bemployeeRepo.deleteById(id);
-           return true;
-       }
-       else return false;
-   }
 
-   public Bemployees updateEmployee(Bemployees bemployees , long id){
-        if(bemployeeRepo.findById(id).isPresent()){
+    public Optional<List<Bemployees>> getEmployeebygender(String gender) {
+        return bemployeeRepo.findByGender(gender);
+    }
+
+    // Need more Maintanance
+    public boolean deleteEmployee(long id) {
+        if (bemployeeRepo.existsById(id)) {
+            bemployeeRepo.deleteById(id);
+            return true;
+        } else return false;
+    }
+
+    //full update  ADMIN Role
+    public Bemployees updateEmployee(Bemployees bemployees, long id) {
+        if (bemployeeRepo.findById(id).isPresent()) {
             Bemployees emp = new Bemployees();
             emp.setId(id);
             emp.setFirstName(bemployees.getFirstName());
@@ -65,8 +73,21 @@ public class BemployeeServ {
             emp.setGender(bemployees.getGender());
             emp.setStatus(bemployees.getStatus());
             return bemployeeRepo.save(emp);
-        }
-        else return null;
-   }
+        } else return null;
+    }
 
+    //Partial update User Role
+    public Bemployees partilaupadte(String name, Bemployees bemployees) {
+        if (bemployeeRepo.findByFirstName(name).isPresent()) {
+            Bemployees emp = new Bemployees();
+            // emp.setStatus(bemployees.getStatus());
+            emp.setFirstName(bemployees.getFirstName());
+            emp.setLastName(bemployees.getFirstName());
+            emp.setPhoneNo(bemployees.getPhoneNo());
+            emp.setEmail(bemployees.getEmail());
+            emp.setGender(bemployees.getGender());
+            return bemployeeRepo.save(emp);
+        } else return null;
+
+    }
 }
