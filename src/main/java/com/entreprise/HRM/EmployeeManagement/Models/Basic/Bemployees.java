@@ -35,6 +35,7 @@ public class Bemployees {
     private String status;
     private Date createdAt;
     private Date updatedAt;
+    private double baseSalary;
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
