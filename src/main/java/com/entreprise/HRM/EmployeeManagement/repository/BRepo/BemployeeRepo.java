@@ -1,10 +1,7 @@
-package com.entreprise.HRM.EmployeeManagement.repository;
+package com.entreprise.HRM.EmployeeManagement.repository.BRepo;
 
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

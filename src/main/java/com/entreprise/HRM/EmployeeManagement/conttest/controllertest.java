@@ -1,7 +1,6 @@
 package com.entreprise.HRM.EmployeeManagement.conttest;
 
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
-import com.entreprise.HRM.EmployeeManagement.repository.BemployeeRepo;
 import com.entreprise.HRM.EmployeeManagement.service.BemployeeServ;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +63,12 @@ public class controllertest {
         return new ResponseEntity<>(bemployeeServ.deleteEmployee(id),HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update(@RequestBody Bemployees bemployees,@PathVariable long id){
+    @PutMapping("/update")
+    public ResponseEntity<Object> update(@Valid @RequestBody Bemployees bemployees,@RequestParam long id){
         return new ResponseEntity<>(bemployeeServ.updateEmployee(bemployees,id),HttpStatus.OK);
     }
-    @PutMapping("/partial")
-    public ResponseEntity<Object> partialUpdate(@RequestParam String name, @Valid @RequestBody Bemployees bemployees){
-        return new ResponseEntity<>(bemployeeServ.partilaupadte(name,bemployees),HttpStatus.OK);
+    @PatchMapping("/partial/{id}")
+    public ResponseEntity<Object> partialUpdate(@PathVariable long id, @Valid @RequestBody Bemployees bemployees){
+        return new ResponseEntity<>(bemployeeServ.partilaupadte(id,bemployees),HttpStatus.OK);
     }
 }

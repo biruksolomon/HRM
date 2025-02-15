@@ -1,15 +1,12 @@
 package com.entreprise.HRM.EmployeeManagement.service;
 
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
-import com.entreprise.HRM.EmployeeManagement.repository.BemployeeRepo;
+import com.entreprise.HRM.EmployeeManagement.repository.BRepo.BemployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.apache.catalina.security.SecurityUtil.remove;
 
 @Service
 public class BemployeeServ {
@@ -77,8 +74,8 @@ public class BemployeeServ {
     }
 
     //Partial update User Role
-    public Bemployees partilaupadte(String name, Bemployees bemployees) {
-        if (bemployeeRepo.findByFirstName(name).isPresent()) {
+    public Bemployees partilaupadte(long id, Bemployees bemployees) {
+        if (bemployeeRepo.findById(id).isPresent()) {
             Bemployees emp = new Bemployees();
             // emp.setStatus(bemployees.getStatus());
             emp.setFirstName(bemployees.getFirstName());

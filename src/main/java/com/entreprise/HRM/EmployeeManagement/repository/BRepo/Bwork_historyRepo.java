@@ -1,4 +1,4 @@
-package com.entreprise.HRM.EmployeeManagement.repository;
+package com.entreprise.HRM.EmployeeManagement.repository.BRepo;
 
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bwork_history;
 import org.springframework.data.jpa.repository.JpaRepository;
