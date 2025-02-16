@@ -1,6 +1,7 @@
 package com.entreprise.HRM.EmployeeManagement.Models.payroll;
 
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,7 +25,8 @@ public class salary_structure {
     private double taxDeduction;
     private Date effectiveDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JsonBackReference // Prevent recursion
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", unique = true)
     private Bemployees bemployees;
-
 }

@@ -4,6 +4,7 @@ import com.entreprise.HRM.EmployeeManagement.Models.payroll.employee_benefit;
 import com.entreprise.HRM.EmployeeManagement.Models.payroll.payroll;
 import com.entreprise.HRM.EmployeeManagement.Models.payroll.retirement;
 import com.entreprise.HRM.EmployeeManagement.Models.payroll.salary_structure;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -35,7 +36,6 @@ public class Bemployees {
     private String status;
     private Date createdAt;
     private Date updatedAt;
-    private double baseSalary;
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
@@ -53,8 +53,10 @@ public class Bemployees {
 //    @ManyToOne
 //    @JoinColumn(name = "salary_id",referencedColumnName = "id")
 //    private salary_structure salaryStructure;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "bemployees", cascade = CascadeType.ALL)
+    @JsonManagedReference // Forward reference
     private salary_structure salaryStructure;
+
 
     @ManyToOne
     @JoinColumn(name = "payroll_id",referencedColumnName = "id")

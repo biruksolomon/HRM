@@ -1,5 +1,7 @@
 package com.entreprise.HRM.EmployeeManagement.conttest;
 
+import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bdepartements;
+import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bdesignation;
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
 import com.entreprise.HRM.EmployeeManagement.service.BemployeeServ;
 import jakarta.validation.Valid;
@@ -70,5 +72,16 @@ public class controllertest {
     @PatchMapping("/partial/{id}")
     public ResponseEntity<Object> partialUpdate(@PathVariable long id, @Valid @RequestBody Bemployees bemployees){
         return new ResponseEntity<>(bemployeeServ.partilaupadte(id,bemployees),HttpStatus.OK);
+    }
+
+    //Departement
+    @PostMapping("/departement/add")
+    public ResponseEntity<Object> departementadd(@Valid @RequestBody List<Bdepartements> bdepartements){
+        return new ResponseEntity<>(bemployeeServ.adddepartemnet(bdepartements),HttpStatus.OK);
+    }
+
+    @PostMapping("/designation/add")
+    public ResponseEntity<Object> designationadd(@Valid @RequestBody List<Bdesignation> bdesignations){
+        return new ResponseEntity<>(bemployeeServ.adddesignation(bdesignations),HttpStatus.OK);
     }
 }

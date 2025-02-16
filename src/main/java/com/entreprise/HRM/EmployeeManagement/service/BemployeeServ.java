@@ -1,6 +1,10 @@
 package com.entreprise.HRM.EmployeeManagement.service;
 
+import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bdepartements;
+import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bdesignation;
 import com.entreprise.HRM.EmployeeManagement.Models.Basic.Bemployees;
+import com.entreprise.HRM.EmployeeManagement.repository.BRepo.BdepartemetRepo;
+import com.entreprise.HRM.EmployeeManagement.repository.BRepo.BdesignationRepo;
 import com.entreprise.HRM.EmployeeManagement.repository.BRepo.BemployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +17,18 @@ public class BemployeeServ {
     @Autowired
     private BemployeeRepo bemployeeRepo;
 
+    @Autowired
+    private BdepartemetRepo bdepartemetRepo;
+
+    @Autowired
+    private BdesignationRepo bdesignationRepo;
+
 
     public Bemployees addEmployee(Bemployees bemployees) {
         return bemployeeRepo.save(bemployees);
     }
+
+
 
     public List<Bemployees> addEmployees(List<Bemployees> bemployees) {
         return bemployeeRepo.saveAll(bemployees);
@@ -86,5 +98,12 @@ public class BemployeeServ {
             return bemployeeRepo.save(emp);
         } else return null;
 
+    }
+
+    public List<Bdepartements> adddepartemnet(List<Bdepartements> departemnet) {
+        return bdepartemetRepo.saveAll(departemnet);
+    }
+    public List<Bdesignation> adddesignation(List<Bdesignation> designation) {
+        return bdesignationRepo.saveAll(designation);
     }
 }
