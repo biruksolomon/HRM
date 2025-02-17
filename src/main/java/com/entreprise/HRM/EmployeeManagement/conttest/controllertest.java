@@ -84,4 +84,7 @@ public class controllertest {
     public ResponseEntity<Object> designationadd(@Valid @RequestBody List<Bdesignation> bdesignations){
         return new ResponseEntity<>(bemployeeServ.adddesignation(bdesignations),HttpStatus.OK);
     }
+//    @PutMapping("/departement/{id}")
+//    public ResponseEntity<Object> departemntassign(@PathVariable long id, @RequestParam int departement){
+//    }
 }
