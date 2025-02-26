@@ -80,10 +80,15 @@ public class controllertest {
         return new ResponseEntity<>(bemployeeServ.adddepartemnet(bdepartements),HttpStatus.OK);
     }
 
-    @PostMapping("/designation/add")
-    public ResponseEntity<Object> designationadd(@Valid @RequestBody List<Bdesignation> bdesignations){
-        return new ResponseEntity<>(bemployeeServ.adddesignation(bdesignations),HttpStatus.OK);
+    @PutMapping("departemnet/add/{departemnt}")
+    public ResponseEntity<Object> departementtoemployee(@RequestBody List<Integer> id , @PathVariable int department){
+        return new ResponseEntity<>(bemployeeServ.employeestodepartemnet(id,department),HttpStatus.OK);
     }
+
+//    @PostMapping("/designation/add")
+//    public ResponseEntity<Object> designationadd(@Valid @RequestBody List<Bdesignation> bdesignations){
+//        return new ResponseEntity<>(bemployeeServ.adddesignation(bdesignations),HttpStatus.OK);
+//    }
 //    @PutMapping("/departement/{id}")
 //    public ResponseEntity<Object> departemntassign(@PathVariable long id, @RequestParam int departement){
 //    }
